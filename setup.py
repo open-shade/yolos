@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = '<name>'
+package_name = 'yolos'
 
 setup(
     name=package_name,
@@ -31,7 +31,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            '<name> = <name>.<name>:main'
+            'yolos = yolos.yolos:main'
         ],
     },
 )

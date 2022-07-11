@@ -1,6 +1,6 @@
 import numpy
 import os
-from transformers import AutoFeatureExtractor, DetrForObjectDetection
+from transformers import AutoFeatureExtractor, YolosForObjectDetection
 import torch
 import cv2
 from PIL import Image as PilImage
@@ -19,7 +19,7 @@ if not ALGO_VERSION:
 
 def predict(image: Image):
     feature_extractor = AutoFeatureExtractor.from_pretrained(ALGO_VERSION)
-    model = DetrForObjectDetection.from_pretrained(ALGO_VERSION)
+    model = YolosForObjectDetection.from_pretrained(ALGO_VERSION)
 
     inputs = feature_extractor(image, return_tensors="pt")
 
@@ -114,7 +114,7 @@ class RosIO(Node):
                 w = result['boxes'][2]
                 h = result['boxes'][3]
                 converted_image = cv2.rectangle(converted_image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-            self.image_publisher.publish(bridge.cv2_to_imgmsg(converted_image)
+            self.image_publisher.publish(bridge.cv2_to_imgmsg(converted_image))
 
         if self.get_parameter('pub_detections').value:
             labels: torch.Tensor = result['labels']

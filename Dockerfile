@@ -22,12 +22,12 @@ RUN apt update && \
     echo "source /opt/shade/setup.sh" >> /home/shade/shade_ws/start.sh && \
     echo "source /opt/ros/${ROS_VERSION}/setup.sh" >> /home/shade/shade_ws/start.sh && \
     echo "source ./install/setup.sh" >> ./start.sh && \
-    echo "ros2 run <name> <name>" >> /home/shade/shade_ws/start.sh && \
+    echo "ros2 run yolos yolos" >> /home/shade/shade_ws/start.sh && \
     chmod +x ./start.sh
 
-COPY . ./src/<name>
+COPY . ./src/yolos
 
-RUN pip3 install ./src/<name> && \
+RUN pip3 install ./src/yolos && \
     : "Install the model" && \
     python3 -c "from transformers import AutoFeatureExtractor; AutoFeatureExtractor.from_pretrained('${MODEL_NAME}')" && \
     colcon build

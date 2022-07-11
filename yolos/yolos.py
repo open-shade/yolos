@@ -14,7 +14,7 @@ from cv_bridge import CvBridge
 ALGO_VERSION = os.getenv("MODEL_NAME")
 
 if not ALGO_VERSION:
-    ALGO_VERSION = '<default here>'
+    ALGO_VERSION = 'hustvl/yolos-base'
 
 
 def predict(image: Image):
@@ -41,26 +41,26 @@ class RosIO(Node):
         self.declare_parameter('pub_detections', True)
         self.image_subscription = self.create_subscription(
             Image,
-            '/<name>/sub/image_raw',
+            '/yolos/image_raw',
             self.listener_callback,
             10
         )
 
         self.image_publisher = self.create_publisher(
             Image,
-            '/<name>/pub/image',
+            '/yolos/image',
             1
         )
 
         self.detection_publisher = self.create_publisher(
             String,
-            '/<name>/pub/detections',
+            '/yolos/detections',
             1
         )
     
         self.boxes_publisher = self.create_publisher(
             String,
-            '/<name>/pub/detection_boxes',
+            '/yolos/detection_boxes',
             1
         )
 
@@ -129,7 +129,7 @@ class RosIO(Node):
 
 
 def main(args=None):
-    print('<name> Started')
+    print('yolos Started')
 
     rclpy.init(args=args)
 

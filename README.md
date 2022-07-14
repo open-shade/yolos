@@ -1,6 +1,6 @@
 # YOLOS-ROS2 Wrapper
 
-This is a ROS2 wrapper for the You Only Look at One Sequence (via Vision Transformers for Object Detection), [YOLOS](https://github.com/hustvl/YOLOS). The main idea is for this container to act as a standalone interface and node, removing the necessity to integrate separate packages and solve numerous dependency issues.
+This is a ROS2 wrapper for the You Only Look at One Sequence (via Vision Transformers for Object Detection), [YOLOS](https://github.com/hustvl/YOLOS). We utilize `huggingface` and the `transformers` for the [source of the algorithm](https://huggingface.co/hustvl/yolos-small). The main idea is for this container to act as a standalone interface and node, removing the necessity to integrate separate packages and solve numerous dependency issues.
 
 The algorithm utilizes of the vanilla ViT pre-trained on mid-sized ImageNet-1k to the more challenging COCO object detection benchmark.
 

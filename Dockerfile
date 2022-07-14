@@ -29,7 +29,7 @@ COPY . ./src/yolos
 
 RUN pip3 install ./src/yolos && \
     : "Install the model" && \
-    python3 -c "from transformers import AutoFeatureExtractor; AutoFeatureExtractor.from_pretrained('${MODEL_NAME}')" && \
+    python3 -c "from transformers import AutoFeatureExtractor, YolosForObjectDetection; AutoFeatureExtractor.from_pretrained('${MODEL_NAME}'); YolosForObjectDetection.from_pretrained('${MODEL_NAME}')" && \
     colcon build
 
 ENTRYPOINT ["/home/shade/shade_ws/start.sh"]
